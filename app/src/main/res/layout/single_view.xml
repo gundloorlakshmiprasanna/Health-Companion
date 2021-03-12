@@ -8,7 +8,7 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="25dp"
         android:id="@+id/imageView"
         android:src="@drawable/ic_launcher_background"/>

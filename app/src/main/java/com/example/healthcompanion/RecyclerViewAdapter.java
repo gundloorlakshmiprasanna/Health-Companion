@@ -44,7 +44,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                  Toast.makeText(context,"position"+position, Toast.LENGTH_SHORT).show();
-                 Intent intent = new Intent(context, PedometerActivity.class);
+                 Intent intent = new Intent(context, StepCountActivity.class);
+                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                  context.startActivity(intent);
 
 
@@ -74,9 +75,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                     if(position==3) {
-                        Intent intent = new Intent(context, PedometerActivity.class);
+                        Intent intent = new Intent(context, PedometerListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
+                    }
+                    else if(position==1){
+                        Intent intent = new Intent(context, Exercise.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                    else if(position==2){
+
+                        Intent intent = new Intent(context, WaterIntake.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+
                     }
                     else {
                         Intent intent = new Intent(context, MainActivity2.class);

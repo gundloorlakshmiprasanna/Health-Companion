@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Health Companion</string>
+    <string name="todo">TODO</string>
+    <string name="add_timings">Add timings</string>
 </resources>

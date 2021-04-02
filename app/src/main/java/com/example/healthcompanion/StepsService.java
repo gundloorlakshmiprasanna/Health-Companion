@@ -16,7 +16,7 @@ public class StepsService extends Service implements SensorEventListener {
 
     private SensorManager mSensorManager;
     private Sensor mStepDetectorSensor;
-    private StepsDBHelper mStepsDBHelper;
+    private DatabaseHelper mDatabaseHelper;
 
 
     @Override
@@ -26,9 +26,10 @@ public class StepsService extends Service implements SensorEventListener {
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR) != null) {
+
             mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
             mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
-            mStepsDBHelper = new StepsDBHelper(this);
+            mDatabaseHelper = new DatabaseHelper(this);
         }
     }
 
@@ -45,7 +46,7 @@ public class StepsService extends Service implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        mStepsDBHelper.createStepsEntry();
+        mDatabaseHelper.createStepsEntry();
     }
 
     @Override

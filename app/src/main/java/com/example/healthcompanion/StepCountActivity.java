@@ -52,10 +52,7 @@ public class StepCountActivity extends AppCompatActivity implements SensorEventL
     @Override
     protected void onPause() {
         super.onPause();
-        if(run)
-        {
-            sensorManager.unregisterListener(this);
-        }
+
     }
 
     @Override

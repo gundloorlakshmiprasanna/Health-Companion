@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 public class DateStepsModel {
@@ -14,52 +17,39 @@ public class DateStepsModel {
 
     public String mDate;
     public int mStepCount;
+    public int Id;
+
+    public DateStepsModel(){
+        this.mDate=mDate;
+        this.mStepCount=mStepCount;
+        this.Id=Id;
+    }
+
+    public int getId(){
+        return Id;
+    }
+
+    public void setId(int Id){
+        this.Id=Id;
+    }
+
+    public String getmDate(){
+        return mDate;
+    }
+
+    public void setmDate(String mDate){
+        this.mDate=mDate;
+    }
+    public int getmStepCount(){
+        return mStepCount;
+    }
+    public void setmStepCount(int mStepCount){
+        this.mStepCount=mStepCount;
+    }
+
+
+
+
 }
 
-    class ListAdapter extends BaseAdapter {
-
-        TextView mDateStepCountText;
-        ArrayList<DateStepsModel> mStepCountList;
-        Context mContext;
-        LayoutInflater mLayoutInflater;
-
-        public  ListAdapter(ArrayList<DateStepsModel> mStepCountList, Context mContext){
-            this.mStepCountList = mStepCountList;
-            this.mContext = mContext;
-            this.mLayoutInflater = (LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-
-        @Override
-        public int getCount() {
-
-            return mStepCountList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-
-            return mStepCountList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            if (convertView == null) {
-
-                convertView = mLayoutInflater.inflate(R.layout.list_rows, parent, false);
-            }
-
-            mDateStepCountText = (TextView) convertView.findViewById(R.id.sensor_name);
-            mDateStepCountText.setText(mStepCountList.get(position).mDate + " - Total Steps: " + String.valueOf(mStepCountList.get(position).mStepCount));
-
-            return convertView;
-        }
-}
 

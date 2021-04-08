@@ -61,9 +61,5 @@ public class RecyclerViewAdapterWater extends RecyclerView.Adapter<RecyclerViewA
             mGlassCount = (TextView) itemView.findViewById(R.id.glassCount);
         }
     }
-
-
-
-
 }
 

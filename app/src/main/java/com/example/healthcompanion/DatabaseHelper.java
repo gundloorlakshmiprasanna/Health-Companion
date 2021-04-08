@@ -36,6 +36,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public static final String TABLE_WATER_INTAKE_SUMMARY = "WATER_INTAKE";
     public static final String GLASS_COUNT = "glassCount";
 
+    public static final String TABLE_SLEEP_SUMMARY = "SleepSummary";
+    public static final String ANALYSIS = "analysis";
+    public static final String SLEEP_DURATION = "sleepDuration";
+
 
     private static final String CREATE_TABLE_STEPS_SUMMARY = "create table "
             + TABLE_STEPS_SUMMARY + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CREATION_DATE + " TEXT, " + STEPS_COUNT + " INTEGER);";
@@ -45,6 +49,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     private static final String CREATE_TABLE_WATER_INTAKE_SUMMARY= "create table "
             + TABLE_WATER_INTAKE_SUMMARY + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CREATION_DATE + " TEXT, " + GLASS_COUNT + " INTEGER);";
+
+    private static final String CREATE_TABLE_SLEEP_SUMMARY = "create table " + TABLE_SLEEP_SUMMARY + " (" + ID
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CREATION_DATE + " TEXT, " + ANALYSIS + " TEXT, " + SLEEP_DURATION + " TEXT);";
+
 
 
 
@@ -59,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL(CREATE_TABLE_STEPS_SUMMARY);
         db.execSQL(CREATE_TABLE_EXERCISE_SUMMARY);
         db.execSQL(CREATE_TABLE_WATER_INTAKE_SUMMARY);
+        db.execSQL(CREATE_TABLE_SLEEP_SUMMARY);
 
     }
 
@@ -69,6 +78,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXERCISE_SUMMARY);
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WATER_INTAKE_SUMMARY);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SLEEP_SUMMARY);
         onCreate(db);
     }
 
@@ -241,4 +252,28 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         return mGlassCountList;
     }
+
+    public ArrayList<SleepModel> readDuration()
+    {
+        ArrayList<SleepModel> mSleepDuration = new ArrayList<SleepModel>();
+        String selectQuery = "SELECT * FROM " + TABLE_EXERCISE_SUMMARY;
+        try {
+
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor c = db.rawQuery(selectQuery, null);
+            if (c.moveToFirst()) {
+                do {
+                    SleepModel mSleepModel = new SleepModel();
+                    mSleepModel.date = c.getString((c.getColumnIndex(CREATION_DATE)));
+                    mSleepModel.analysis = c.getString((c.getColumnIndex(ANALYSIS)));
+                    mSleepDuration.add(mSleepModel);
+                } while (c.moveToNext());
+            }
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mSleepDuration;
+    }
+
 }

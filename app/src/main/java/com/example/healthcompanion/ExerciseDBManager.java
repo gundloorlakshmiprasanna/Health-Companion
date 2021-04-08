@@ -20,6 +20,8 @@ public class ExerciseDBManager {
 
     private SQLiteDatabase database;
 
+
+
     public ExerciseDBManager(Context c) {
         context = c;
     }
@@ -35,12 +37,15 @@ public class ExerciseDBManager {
         dbHelper.close();
     }
 
-    public void insert(String date, String start, String stop) {
+
+
+    public void insert(String date, String START, String STOP ) {
+
 
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.CREATION_DATE,date);
-        contentValue.put(DatabaseHelper.START, start);
-        contentValue.put(DatabaseHelper.STOP, stop);
+        contentValue.put(DatabaseHelper.START, START);
+        contentValue.put(DatabaseHelper.STOP, STOP);
         database.insert(DatabaseHelper.TABLE_EXERCISE_SUMMARY, null, contentValue);
     }
 

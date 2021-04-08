@@ -38,6 +38,7 @@ public class PedometerListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Step Count");
         setContentView(R.layout.activity_pedometer_list);
 
         mSensorRecyclerView = (RecyclerView) findViewById(R.id.steps_list);

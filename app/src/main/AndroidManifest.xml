@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.healthcompanion">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,16 +16,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthCompanion">
-        <activity android:name=".WaterIntake"
-            android:label="Water Intake Remainder"/>
-        <activity android:name=".Exercise"
+        <activity
+            android:name=".Sleep"
+            android:label="Sleep">
+        </activity>
+        <activity
+            android:name=".WaterIntake"
+            android:label="Water Intake Remainder" />
+        <activity
+            android:name=".Exercise"
             android:label="Exercise" />
-        <activity android:name=".AddSchedule"
+        <activity
+            android:name=".AddSchedule"
             android:label="Water Intake Remainder"
-            android:parentActivityName=".WaterIntake"/>
-        <activity android:name=".StepCountActivity" />
-        <activity android:name=".PedometerListActivity"
+            android:parentActivityName=".WaterIntake" />
+        <activity
+            android:name=".StepCountActivity"
             android:label="Step Count"/>
+        <activity
+            android:name=".PedometerListActivity"
+            android:label="Step Count" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".ForgotPasswordPage" />
         <activity android:name=".SignUpPage" />
@@ -30,7 +46,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".WaterIntakeRemainder"/>
+
+        <service android:name=".SleepService"
+            android:enabled="true"
+            android:exported="false"/>
+        <receiver android:name=".SleepNotificationReceiver"/>
+        <receiver android:name=".SleepServiceStarterReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".WaterIntakeRemainder"
+            android:enabled="true"
+            android:exported="false">
+        </receiver>
+
     </application>
 
 </manifest>

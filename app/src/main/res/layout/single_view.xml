@@ -24,6 +24,6 @@
         android:text="Image "
         android:textSize="29dp"
         android:layout_marginLeft="25dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"/>
 
 </LinearLayout>

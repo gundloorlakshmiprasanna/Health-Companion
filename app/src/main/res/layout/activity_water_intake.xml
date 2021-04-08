@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WaterIntake">
+    tools:context=".WaterIntake"
+    android:background="@drawable/water_bg">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/waterRv"
-        android:paddingTop="?attr/actionBarSize"/>
+        android:paddingTop="?attr/actionBarSize" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addSchedule"
@@ -24,7 +25,8 @@
         android:focusable="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        tools:ignore="RelativeOverlap" />
+        tools:ignore="RelativeOverlap"
+        />
 
 
 </RelativeLayout>

@@ -35,7 +35,7 @@ public class Exercise extends AppCompatActivity {
 
 
 
-    TextView id,creationDate,START,STOP;
+    TextView id,creationDate,Start,Stop;
 
     Button btn1,btn2;
 
@@ -45,9 +45,17 @@ public class Exercise extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
+
+
         creationDate =  findViewById(R.id.date);
-        START =  findViewById(R.id.startTime);
-        STOP=  findViewById(R.id.stopTime);
+        Start=  findViewById(R.id.startTime);
+        Stop=  findViewById(R.id.stopTime);
+
+        SimpleDateFormat StartTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        Start.setText(StartTime.format(new Date()));
+
+        SimpleDateFormat StopTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        Stop.setText(StopTime.format(new Date()));
 
 
 
@@ -58,14 +66,13 @@ public class Exercise extends AppCompatActivity {
 
         Cursor cursor = exerciseDbManager.readExerciseData();
 
+        getDataForList();
+
         mExerciseRecyclerView=findViewById(R.id.exerciserv);
         mRecyclerViewAdapterExercise = new RecyclerViewAdapterExercise(Exercise.this, mExerciseList);
         mExerciseRecyclerView.setAdapter(mRecyclerViewAdapterExercise);
 
-
         mExerciseRecyclerView.setLayoutManager(new LinearLayoutManager(Exercise.this));
-
-
 
         btn1=(Button) findViewById(R.id.startBtn);
         btn2=(Button) findViewById(R.id.stopBtn);
@@ -77,7 +84,7 @@ public class Exercise extends AppCompatActivity {
                 btn2.setVisibility(View.VISIBLE);
 
                 DatabaseHelper dbHelper = new DatabaseHelper(Exercise.this);
-                dbHelper.addTime(creationDate.getText().toString().trim(),START.getText().toString().trim(),null );
+                dbHelper.addTime(creationDate.getText().toString().trim(),Start.getText().toString().trim(),null );
 
 
             }
@@ -90,12 +97,11 @@ public class Exercise extends AppCompatActivity {
                 btn1.setVisibility(View.VISIBLE);
 
                 DatabaseHelper dbHelper = new DatabaseHelper(Exercise.this);
-                dbHelper.addTime(null,null,STOP.getText().toString().trim());
+                dbHelper.addTime(null,null,Stop.getText().toString().trim());
 
             }
         });
     }
-
     private void getDataForList() {
 
         mdbHelper = new DatabaseHelper(this);

@@ -43,15 +43,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             int position = getAdapterPosition();
 
 
-                 Toast.makeText(context,"position"+position, Toast.LENGTH_SHORT).show();
-                 Intent intent = new Intent(context, StepCountActivity.class);
-                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                 context.startActivity(intent);
-
-
-
-
-
+            Toast.makeText(context, "position" + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, PedometerListActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
 
         }
     }
@@ -92,7 +87,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                     }
                     else {
-                        Intent intent = new Intent(context, MainActivity2.class);
+                        Intent intent = new Intent(context, Sleep.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }
